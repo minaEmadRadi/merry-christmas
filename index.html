@@ -53,6 +53,32 @@
             font-weight: bold;
             color: gold;
         }
+        #myAudio {
+        width: 300px; /* Adjust the width */
+        height: 50px; /* Adjust the height */
+        background-color: #f3f3f3; /* Set a background color */
+        border-radius: 10px; /* Add rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+        padding: 5px; /* Add some padding */
+    }
+
+    #myAudio::-webkit-media-controls-panel {
+        background-color: #f0f0f0; /* Change the control panel color */
+    }
+
+    #myAudio::-webkit-media-controls-play-button {
+        background-color: #4CAF50; /* Change the play button color */
+        border-radius: 50%;
+    }
+
+    #myAudio::-webkit-media-controls-volume-slider {
+        background-color: #ddd; /* Change the volume slider color */
+    }
+
+    /* Style the audio controls container */
+    #myAudio::-webkit-media-controls {
+        border-radius: 10px;
+    }
     </style>
 </head>
 <body>
@@ -66,17 +92,22 @@
             <!-- Generate 10 cards -->
             <script>
                 const questionAnswers = [
-                    { number: 1, question: "What is your Christmas wish?", answer: "Your wish will come true!" },
-                    { number: 2, question: "What do you love most about Christmas?", answer: "Family and friends!" },
-                    { number: 3, question: "What gift do you want?", answer: "A big surprise!" },
-                    { number: 4, question: "Where will you celebrate Christmas?", answer: "With loved ones!" },
-                    { number: 5, question: "What makes Christmas special?", answer: "Love and joy!" },
-                    { number: 6, question: "Who do you want to spend Christmas with?", answer: "Those closest to me!" },
-                    { number: 7, question: "What is your favorite Christmas memory?", answer: "Snowy nights and warm fires!" },
-                    { number: 8, question: "What’s your holiday tradition?", answer: "Decorating the tree!" },
-                    { number: 9, question: "What’s your favorite holiday treat?", answer: "Gingerbread cookies!" },
-                    { number: 10, question: "What makes you smile at Christmas?", answer: "Happiness everywhere!" },
-                ];
+    { number: 1, question: "كنت السبب فى هروب عائلة إلى مصر", answer: "هيرودس الملك" },
+    { number: 2, question: "مصنوع من الخشب", answer: "المزود" },
+    { number: 3, question: "ليا اسمين بابا نويل و سانتا كلوز", answer: "القديس نيقولاوس" },
+    { number: 4, question: "من قائل هذه العبارة الآن تطلق عبدك بسلام حسب قولك بسلام لأن عينى ابصرت خلاصك", answer: "سمعان الشيخ" },
+    { number: 5, question: "من هم الذين يبشرهم الملاك ؟ وبماذا يبشرهم ؟", answer: "الرعاه بميلاد السيد المسيح" },
+    { number: 6, question: "خدمت السيده العذراء اليصابات مدة ............", answer: "ثلاثة أشهر" },
+    { number: 7, question: "ماذا قدم المجوس هدايا للمسيح؟", answer: "ذهبا ولبانا ومرا" },
+    { number: 8, question: "من هو أول شهيد فى المسيحية؟", answer: "أسطفانوس رئيس الشمامسة" },
+    { number: 9, question: "دخلت الخطية بامرأة وخلصت البشرية ايضا بامرأة، من هاتان المرأتان؟", answer: "حواء - العذراء مريم" },
+    { number: 10, question: "ما هو الشئ الذي اذا اخذت منه يكبر؟", answer: "الحفره" },
+    { number: 11, question: "ما هي التي تأكل و لا تشبع؟", answer: "النار" },
+    { number: 12, question: "ما هو الذي يكون اخضر في الارض و يكون اسود في السوق و يكون احمر في البيت؟", answer: "الشاي" },
+    { number: 13, question: "ما هو الشئ الذي لديه اربع ارجل و لا يستطيع ان يمشى؟", answer: "الكرسي" },
+    { number: 14, question: "ايه هو الشئ اللى اول ما يتولد يمشي على اربعة و بعد كده اتنين و بعد كده تلاتة؟", answer: "الانسان" }
+];
+
 
                 questionAnswers.forEach(item => {
                     let disabledClass = localStorage.getItem(`curd${item.number}`) === 'disabled' ? 'disabled' : '';
@@ -111,7 +142,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="christmas-tree.jpg" alt="Christmas Tree">
+                    <!-- <img src="christmas-tree.jpg" alt="Christmas Tree"> -->
                     <p class="mt-3" style="font-size: 2.5rem; font-weight: bold; color: gold;">What's your Christmas wish?</p>
                     <div>
                         <button class="btn btn-outline-warning me-2" onclick="closeModal()">Close</button>
@@ -152,6 +183,10 @@
             let modalElement = document.getElementById('curdModal');
             let modal = bootstrap.Modal.getInstance(modalElement);
             modal.hide();
+            var audio = document.getElementById('myAudio');
+            audio.src = 'assets/Sound/3.mp3';  // Replace with the path to the new track
+            audio.loop = false;  // Disable looping
+            audio.play();  // Play the new audio
         }
         function getAnswer() {
             var audio = document.getElementById('myAudio');
@@ -163,11 +198,6 @@
         }
 
 
-        window.addEventListener('load', function() {
-            var audio = document.getElementById('myAudio');
-            audio.muted = false;
-            audio.play();
-        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
